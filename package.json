@@ -1,0 +1,74 @@
+{
+  "name": "tsc-compiler",
+  "displayName": "TSC Compiler",
+  "description": "Compile typescript on the web",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.73.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:tsc-compiler.transpile"
+  ],
+  "browser": "./dist/web/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "tsc-compiler.transpile",
+        "title": "TSC-Compiler: Transpile TypeScript"
+      }
+    ],
+    "configuration": {
+      "title": "TSC Compiler",
+      "properties": {
+        "tsc-compiler.target": {
+          "type": "string",
+          "enum": [ "ES3", "ES5", "ES2015", "ES2016", "ES2017", "ES2018", "ES2019", "ES2020", "ES2021", "ES2022", "ESNext", "JSON", "Latest"],
+          "default": "ES6"
+        },
+        "tsc-compiler.module": {
+          "type": "string",
+          "enum":  [ "None", "CommonJS", "AMD", "UMD", "System", "ES2015", "ES2020", "ES2022", "ESNext", "Node16", "NodeNext"],
+          "default": "ESNext"
+        },
+        "tsc-compiler.outDir": {
+          "type": "string",
+          "default": "dist"
+        }
+      }
+    }
+  },
+  "publisher": "MunyDev",
+  "scripts": {
+    "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
+    "pretest": "npm run compile-web",
+    "vscode:prepublish": "npm run package-web",
+    "compile-web": "webpack",
+    "watch-web": "webpack --watch",
+    "package-web": "webpack --mode production --devtool hidden-source-map",
+    "lint": "eslint src --ext ts",
+    "run-in-browser": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ."
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.0",
+    "@types/vscode": "^1.73.0",
+    "@types/webpack-env": "^1.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "@vscode/test-web": "^0.0.32",
+    "assert": "^2.0.0",
+    "eslint": "^8.26.0",
+    "mocha": "^10.1.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "@types/path-browserify": "^1.0.0"
+  }
+}
