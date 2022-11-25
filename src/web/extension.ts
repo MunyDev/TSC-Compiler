@@ -26,16 +26,16 @@ export function activate(context: vscode.ExtensionContext) {
 		// Detect active file and transpile it
 		let activeFileName = getActiveFileName();
 		
-		if (!activeFileName) return;
+		if (!activeFileName) {return;}
 
 		let config = vscode.workspace.getConfiguration('tsc-compiler');
-		let filePath = activeFileName.path
+		let filePath = activeFileName.path;
 		
 		let pathWithoutBaseName = path.dirname(filePath);
 		let pathBaseName = path.basename(filePath);
 		let pathCustom:string = (config.get("outDir")||'');
 		let changedBasename = pathWithoutBaseName + '/'+ (pathCustom.endsWith('/') ? pathCustom.substring(0, pathBaseName.length) : pathCustom) +'/'+ pathBaseName.substring(0, pathBaseName.length - 3) + ".js";
-		if (!vscode.window.activeTextEditor) return;
+		if (!vscode.window.activeTextEditor) {return;}
 		let fileContents = vscode.window.activeTextEditor.document.getText();
 		let moduleResolution = typescript.ModuleKind.ESNext;
 		
@@ -54,7 +54,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		vscode.workspace.fs.writeFile(vscode.Uri.parse(changedBasename), buffer).then(()=>{
 			vscode.window.showInformationMessage('TS Transpiled successfully!');
-		})
+		});
 		
 		// vscode.window.showInformationMessage('Hello World from TSC Compiler in a web extension host!');
 	});
