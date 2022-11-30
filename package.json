@@ -25,12 +25,38 @@
       "properties": {
         "tsc-compiler.target": {
           "type": "string",
-          "enum": [ "ES3", "ES5", "ES2015", "ES2016", "ES2017", "ES2018", "ES2019", "ES2020", "ES2021", "ES2022", "ESNext", "JSON", "Latest"],
+          "enum": [
+            "ES3",
+            "ES5",
+            "ES2015",
+            "ES2016",
+            "ES2017",
+            "ES2018",
+            "ES2019",
+            "ES2020",
+            "ES2021",
+            "ES2022",
+            "ESNext",
+            "JSON",
+            "Latest"
+          ],
           "default": "ES6"
         },
         "tsc-compiler.module": {
           "type": "string",
-          "enum":  [ "None", "CommonJS", "AMD", "UMD", "System", "ES2015", "ES2020", "ES2022", "ESNext", "Node16", "NodeNext"],
+          "enum": [
+            "None",
+            "CommonJS",
+            "AMD",
+            "UMD",
+            "System",
+            "ES2015",
+            "ES2020",
+            "ES2022",
+            "ESNext",
+            "Node16",
+            "NodeNext"
+          ],
           "default": "ESNext"
         },
         "tsc-compiler.outDir": {
